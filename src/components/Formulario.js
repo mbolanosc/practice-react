@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 var dataUser = 'mbolanos',
-    dataPass = 'boro'
+    dataPass = 'boro';
+
+    const styles = ({
+      msgError: {
+        color: '#E3000E'
+      }
+    });
 class Formulario extends Component {
   constructor(props) {
     super(props);
@@ -12,6 +18,8 @@ class Formulario extends Component {
     this.handleChangePassword = this.handleChangePassword.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
   }
+
+
   handleChangeUsername(event) {
     this.validateEmpy(event.target.value);
     this.setState({username: event.target.value});
@@ -31,7 +39,12 @@ class Formulario extends Component {
      var dataPass = this.validateData(this.state.password);
      if((dataUser) && (dataPass)){
        console.log('doblemente valido');
-       this.setState({msg: 'Login existoso :)'})
+       setTimeout(function(){
+          this.setState({username: '', password:''});
+          this.setState({msg: 'Login existoso :)'});
+          console.log('state del user viejo' + this.state.username);
+        }.bind(this), 2000);
+        console.log('state del user' + this.state.username);
      }else{
        console.log('no valido nada');
        this.setState({msg: 'Datos incorrectos'})
@@ -93,7 +106,7 @@ class Formulario extends Component {
           </div>
 
           <div>
-            <h4>{this.state.msg}</h4>
+            <h4 style={styles.msgError}>{this.state.msg}</h4>
           </div>
 
         </div>
