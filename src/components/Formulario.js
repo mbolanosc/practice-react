@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
-var dataUser = 'mbolanos',
+const dataUser = 'mbolanos',
     dataPass = 'boro';
-
     const styles = ({
       msgError: {
         color: '#E3000E'
+      },
+      msgDefault:{
+        color: 'black'
+      },
+      msgSuccess:{
+        color:'#2CC990'
       }
     });
 class Formulario extends Component {
@@ -13,12 +18,13 @@ class Formulario extends Component {
     this.state = {
       username: '',
       password:'',
-      msg: ''};
+      msg: '',
+      mgsStyle: 'default'
+    };
     this.handleChangeUsername = this.handleChangeUsername.bind(this);
     this.handleChangePassword = this.handleChangePassword.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
   }
-
 
   handleChangeUsername(event) {
     this.validateEmpy(event.target.value);
@@ -38,19 +44,21 @@ class Formulario extends Component {
      var dataUser = this.validateData(this.state.username);
      var dataPass = this.validateData(this.state.password);
      if((dataUser) && (dataPass)){
-       console.log('doblemente valido');
        setTimeout(function(){
           this.setState({username: '', password:''});
+          this.setState({mgsStyle: 'success'});
           this.setState({msg: 'Login existoso :)'});
           console.log('state del user viejo' + this.state.username);
         }.bind(this), 2000);
-        console.log('state del user' + this.state.username);
+        console.log('state del user nuevo' + this.state.username);
      }else{
        console.log('no valido nada');
-       this.setState({msg: 'Datos incorrectos'})
+       this.setState({msg: 'Datos incorrectos'});
+       this.setState({mgsStyle: 'error'});
      }
    }else{
-     this.setState({msg: 'Espacios sin llenar'})
+     this.setState({msg: 'Espacios sin llenar'});
+     this.setState({mgsStyle: 'error'});
    }
  }
  validateEmpy(value){
@@ -74,9 +82,18 @@ class Formulario extends Component {
     return validData;
   }
 
-
-
   render(){
+      var  msgColor='msgDefault',
+          currentMsgStyle = styles.msgDefault;
+      if(this.state.mgsStyle == 'error'){
+        currentMsgStyle = styles.msgError;
+      }else{
+        currentMsgStyle = styles.msgSuccess;
+      }
+
+
+
+
     return(
       <div className="form-container">
         <div className="form-wrapper">
@@ -106,7 +123,7 @@ class Formulario extends Component {
           </div>
 
           <div>
-            <h4 style={styles.msgError}>{this.state.msg}</h4>
+            <h4 style={currentMsgStyle}>{this.state.msg}</h4>
           </div>
 
         </div>
