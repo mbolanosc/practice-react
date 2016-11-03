@@ -31,9 +31,13 @@ class Formulario extends Component {
      var dataPass = this.validateData(this.state.password);
      if((dataUser) && (dataPass)){
        console.log('doblemente valido');
+       this.setState({msg: 'Login existoso :)'})
      }else{
        console.log('no valido nada');
+       this.setState({msg: 'Datos incorrectos'})
      }
+   }else{
+     this.setState({msg: 'Espacios sin llenar'})
    }
  }
  validateEmpy(value){
@@ -41,7 +45,6 @@ class Formulario extends Component {
    if(value === ''){
      fieldValid = false;
      console.log('validacion de espacios: Si hay campos sin rellenar');
-     this.setState({msg: 'Datos incorrectos'})
    }else{
      console.log('validacion de espacios: No hay campos sin rellenar');
    }
