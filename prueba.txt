@@ -1,0 +1,81 @@
+import React, { Component } from 'react';
+class Formulariobusqueda extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchPhoneState: '',
+      localData:[{
+        personas:{
+          "Fer":{
+            "Nombre": "Fer",
+            "Apellidos":"Bolaños",
+            "Celular":"8950481"
+          },
+          "Rebe":{
+            "Nombre": "Rebeca",
+            "Apellidos":"Bolaños",
+            "Celular":"67673290"
+          }
+      }}]
+    };
+    this.handleChangeSearchPhone = this.handleChangeSearchPhone.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+  }
+
+  handleChangeSearchPhone(event) {
+    this.validateEmpy(event.target.value);
+    this.setState({searchPhoneState: event.target.value});
+  }
+  handleSearch() {
+    event.preventDefault();
+    var searchDataPhone = this.state.searchPhoneState;
+    this.setState({searchPhoneState: ''});
+    console.log('state number:' + searchDataPhone);
+    console.log('json :', this.state.localData);
+
+    var findData = this.findData(this.state.localData);
+    console.log('sddasd findData '+ findData );
+ }
+ validateEmpy(value){
+ }
+
+  findData(objectData){
+    var foundData = false;
+    console.log('objectData ', Object.keys(objectData.personas).length);
+    for(var i = 0; i < Object.keys(objectData.personas).length; i++){
+      console.log('esoy dentro del ciclo');
+     foundData = true;
+   }
+    return foundData;
+  }
+
+
+  render(){
+    return(
+      <div className="form-container">
+        <div className="form-wrapper">
+          <div className="form-search">
+            <label>Numero de telefono</label>
+            <input
+              type="text"
+              placeholder="89500481"
+              value={this.state.searchPhone}
+              onChange={this.handleChangeSearchPhone}
+            />
+          </div>
+
+          <div className="form-button">
+            <button type="button"
+            className="send-button" onClick={this.handleSearch}>Buscar</button>
+          </div>
+
+          <div>
+            <h4>{this.state.msg}</h4>
+          </div>
+
+        </div>
+      </div>
+    )
+  }
+}
+export default Formulariobusqueda;

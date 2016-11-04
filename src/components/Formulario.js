@@ -91,9 +91,6 @@ class Formulario extends Component {
         currentMsgStyle = styles.msgSuccess;
       }
 
-
-
-
     return(
       <div className="form-container">
         <div className="form-wrapper">

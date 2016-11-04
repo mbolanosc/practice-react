@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../css/App.css';
-import Formulario from './Formulario';
+import Formulariobusqueda from './Formulariobusqueda';
 import Footer from './Footer';
 
 class Header extends Component {
@@ -10,7 +10,7 @@ class Header extends Component {
         <div className="header-wrapper">
           <p>Componente header</p>
         </div>
-        <Formulario/>
+        <Formulariobusqueda/>
         <Footer/>
       </div>
     );

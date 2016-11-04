@@ -16,13 +16,14 @@
   height: auto;
   width: auto;
 }
-.form-username{
+.form-username, .form-search{
   padding-top: 2em;
 }
 .form-password, .form-button{
   margin-top: 2em;
 }
 .send-button{
+  margin-bottom: 10px;
   height: 2em;
   width: 5%;
   padding: 10px 15px 20px 15px;
@@ -37,3 +38,5 @@
   text-align: center;
   padding-top: 2em;
 }
+
+/*search form*/
